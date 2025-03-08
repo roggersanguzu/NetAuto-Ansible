@@ -1,0 +1,15 @@
+---
+- name: ANSIBLE VAULT FOR SENSITIVE DATA
+  hosts: all
+  gather_facts: no
+  vars_files:
+    - secrets
+  tasks:
+    - name:  DIPLAYING OSPF PASSWORDS
+      debug:
+        msg: "Router {{hostname}} and the OSPF password is {{ospf_password}}"
+      when: inventory_hostname == 'csr1'
+    - name: DISPLAYING BGP  PASSWORDS
+      debug:
+        msg: " Router {{hostname}} and BGP password is {{bgp_password}}"
+      when: inventory_hostname == 'mx1'
