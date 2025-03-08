@@ -1,0 +1,17 @@
+---
+- name: ANSIBLE LOOPS OVER A LISTS
+  hosts: cisco
+  gather_facts: no
+  tasks:
+    - name: SEVER LISTS BEING DETAILED LOOPED OVER IN A GOOD FORMAT
+      debug:
+        msg: "Router {{hostname}} is connected to snmp server {{item}}"
+      loop: "{{ snmp_servers }}"
+- name: ANSIBLE LOOPING OVER THE DICTIONARY OF ITEMS
+  hosts: juniper
+  gather_facts: no
+  tasks:
+    - name: SERVER DICTIONARIES BEING LOOPED OVER INTO A GOOD FORMAT
+      debug:
+        msg: "Router {{hostname}} is with user {{item.key}} and password  {{item.value}}"
+      with_dict: "{{users}}"

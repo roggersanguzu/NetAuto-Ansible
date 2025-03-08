@@ -1,0 +1,12 @@
+---
+- name: BEGINNING POINT OF A PLAY BOOK
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: THIS SECTION DEISPLAYS HOSTNAMES
+      debug:
+        msg: "Router name is {{ hostname }}" 
+    - name: Display OS
+      debug:
+        msg: "{{ hostname }} is running {{ os }}"
+

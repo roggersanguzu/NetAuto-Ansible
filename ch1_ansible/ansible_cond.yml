@@ -1,0 +1,15 @@
+---
+- name: USING CONDITIONALS
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: RUN EDGE HOSTS ONLY
+      debug:
+        msg: "Router name is {{ hostname }}"
+      when: "'cisco' in group_names"
+
+    - name: RUN FOR ONLY MX1 NODE
+      debug:
+        msg: "{{ hostname }} is running {{ os }}"
+      when:
+        - inventory_hostname == 'mx1'
