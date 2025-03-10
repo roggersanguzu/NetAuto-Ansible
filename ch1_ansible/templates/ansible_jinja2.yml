@@ -1,0 +1,27 @@
+---
+- name: GENERATING CISCO CONFIGURATIONS FROM THE JINJA2
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: CREATING CONFIGGURATIONS DIRECTORIES
+      file: path=configs state=directory
+
+- name: GENERATING CISSCO CONFIGURATIONS FROM JINJA2
+  hosts: cisco
+  gather_facts: no
+  tasks:
+    - name: GENERATE CISCO BASIC CONFIGURATIONS
+      template:
+        src: "templates/ios__basic.j2"
+        dest: "configs/{{inventory_hostname}}.cfg"
+      delegate_to: localhost
+
+- name: GENERATE JUNIPER CONFIGURATIONS FRON JINJA2
+  hosts: juniper
+  gather_facts: no
+  tasks:
+    - name: GENERATE JUNIPER BASIC CONFIGURATIONS FROM JINJA2
+      template:
+        src: "templates/junos_basic.j2"
+        dest: "configs/{{inventory_hostname}}.cfg"
+      delegate_to: localhost
